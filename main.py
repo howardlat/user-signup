@@ -8,15 +8,16 @@ app.config['DEBUG'] = True
 def error():
     username = request.form['username']
     
-    if not username.isalpha():
+    if not username.isalpha() or len(username) <3 or len(username) > 20:
         error = "That's not a valid username"
-    elif len(username) <3 or len(username) > 20:
-        return redirect("/?error=" + error)
+                       
+    return redirect("/?error=" + error)
         
 
        
 @app.route("/")
 def index():
-    return render_template('base.html')
+    encoded_error = request.args.get("error")
+    return render_template('base.html', error=encoded_error)
 
 app.run()
