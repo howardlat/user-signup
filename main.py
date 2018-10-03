@@ -17,7 +17,6 @@ def error():
        
 @app.route("/")
 def index():
-    encoded_error = request.args.get("error")
-    return render_template('base.html', error=encoded_error)
+    return render_template('base.html')
 
 app.run()
