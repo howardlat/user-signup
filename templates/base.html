@@ -16,7 +16,7 @@
         <h1>Signup</h1>
     </div>  
     <div class="b">
-    <form method="post">
+    <form action="/validate" method="POST">
             <table>
                     <tbody><tr>
                         <td><label for="username">Username</label></td>
@@ -50,6 +50,10 @@
                 <input type="submit">
     </form>
     </div>
+
+    {% if error %}
+    <p class='error'>{{ error }}</p>
+    {% endif %}
     {% endblock %}
 </body>
 </html>
