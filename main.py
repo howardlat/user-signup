@@ -4,7 +4,7 @@ import cgi
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-@app.route('/validate', methods=['POST'])
+@app.route('validate', methods=['POST'])
 def validate():
     username = request.form['username']    
     if not username.isalpha() or len(username) <3 or len(username) > 20:
