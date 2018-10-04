@@ -6,10 +6,15 @@ app.config['DEBUG'] = True
 
 @app.route('/validate', methods=['POST'])
 def validate():
-    username = request.form['username']    
+    username = request.form['username']
     if not username.isalpha() or len(username) <3 or len(username) > 20:
         error = "That's not a valid username"
-        return render_template('base.html')  + error     
+        return redirect("/?error=" + error)  
+
+    password = request.form['password']
+    if not password.isalpha() or len(password) <3 or len(password) > 20:
+        error = "That's not a valid password"
+        return redirect("/?error=" + error)    
    
        
 @app.route("/")
