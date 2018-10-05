@@ -16,34 +16,34 @@
         <h1>Signup</h1>
     </div>  
     <div class="b">
-    <form action="/validate" method="POST">
+    <form action="/" method="POST">
             <table>
                     <tbody><tr>
                         <td><label for="username">Username</label></td>
                         <td>
                             <input name="username" type="text" value="">
-                            
+                            <p class="error">{{user_error}}</p>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="password">Password</label></td>
                         <td>
                             <input name="password" type="password">
-                            
+                            <p class="error">{{password_error}}</p>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="verify">Verify Password</label></td>
                         <td>
                             <input name="verify" type="password">
-                            
+                            <p class="error">{{verify_error}}</p>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="email">Email (optional)</label></td>
                         <td>
                             <input name="email" value="">
-                            
+                            <p class="error">{{email_error}}</p>
                         </td>
                     </tr>
                 </tbody></table>

@@ -5,40 +5,45 @@ import re
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-@app.route('/validate', methods=['POST'])
+@app.route('/', methods=['POST'])
 def validate():
     username = request.form['username']
-    if not username.isalnum() or len(username) <3 or len(username) > 20:
-        error = "That's not a valid username"
-        return redirect("/?error=" + error)  
-
+    user_error = ""
+    if " " in username or len(username) == 0 or len(username) <3 or len(username) > 20:
+        user_error = "That's not a valid username"
+    
     password = request.form['password']
-    if not password.isalnum() or len(password) <3 or len(password) > 20:
-        error = "That's not a valid password"
-        return redirect("/?error=" + error)  
-
+    password_error = ""
+    if " " in password or len(password) == 0 or len(password) <3 or len(password) > 20:
+        password_error = "That's not a valid password"
+        
     verify = request.form['verify']
-    if not verify.isalnum() or verify != password: 
-        error = "Passwords don't match"
-        return redirect("/?error=" + error) 
-
-
+    verify_error = ""
+    if " " in verify or len(verify) == 0 or verify != password: 
+        verify_error = "Passwords don't match"
+        
     email = request.form['email']
+    email_error = ""
     match = re.search(r'[\w.-]+@[\w.-]+.\w+', email)
     if not match:
-        error = "Invalid email address"
-        return redirect("/?error=" + error)
+        email_error = "Invalid email address"
 
+    if user_error and password_error and verify_error and email_error:
+        return render_template('welcome.html', username=username)
+          
     else:
-        return redirect('/welcome')
+        return render_template('base.html',
+        username=username,
+        email=email,
+        user_error=user_error,
+        password_error=password_error,
+        verify_error=verify_error,
+        email_error=email_error)
 
-@app.route('/welcome', methods=['GET', 'POST'])
-def welcome():
-    return render_template('welcome.html')
-       
 @app.route("/")
 def index():
     encoded_error = request.args.get("error")
     return render_template('base.html', error=encoded_error and cgi.escape(encoded_error, quote=True))
+
 
 app.run()

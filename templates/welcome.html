@@ -10,14 +10,8 @@
 <body>
 {% block content %}
 
-<form action='/welcome' method="POST">
+<form method="POST">
     <h2>Welcome, {{username}}!</h2>
-<ul>
-{% for name in username %}
-    <li>{{ username }}</li>
-{% endfor %}
-</ul>
-
 </form>
 
 {% endblock %}
