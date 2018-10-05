@@ -26,16 +26,16 @@ def validate():
     if "@" and " " and "." not in email:
         email_error = "Invalid email address"
 
-    if not user_error and not password_error and not verify_error and not email_error:
-        return render_template('base.html')
-          
-  
-    return render_template('welcome.html',
-    user_error=user_error,
-    password_error=password_error,
-    verify_error=verify_error,
-    username=username)
+        return render_template('base.html')  
 
+    else:
+        return render_template('welcome.html',
+        user_error=user_error,
+        password_error=password_error,
+        verify_error=verify_error,
+        email_error=email_error,
+        username=username)
+  
 @app.route("/")
 def index():
     encoded_error = request.args.get("error")
