@@ -1,6 +1,5 @@
 from flask import Flask, request, redirect, render_template, url_for
 import cgi
-import re
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -24,8 +23,7 @@ def validate():
         
     email = request.form['email']
     email_error = ""
-    match = re.search(r'[\w.-]+@[\w.-]+.\w+', email)
-    if not match:
+    if @ not in email or and period not in email "":
         email_error = "Invalid email address"
 
     if user_error and password_error and verify_error and email_error:
