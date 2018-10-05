@@ -26,15 +26,15 @@ def validate():
     if "@" and " " and "." not in email:
         email_error = "Invalid email address"
 
-    if  user_error or password_error or verify_error or email_error:
-        return render_template('base.html', username=username, password=password, verify=verify, email=email)
+    if not user_error and not password_error and not verify_error and not email_error:
+        return render_template('base.html')
           
-    else:
-        return render_template('welcome.html',
-        user_error,
-        password_error,
-        verify_error,
-        email=email, username=username)
+  
+    return render_template('welcome.html',
+    user_error=user_error,
+    password_error=password_error,
+    verify_error=verify_error,
+    username=username)
 
 @app.route("/")
 def index():
