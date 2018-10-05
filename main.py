@@ -33,8 +33,7 @@ def validate():
         return render_template('base.html',
         user_error=user_error,
         password_error=password_error,
-        verify_error=verify_error,
-        email_error=email_error)
+        verify_error=verify_error)
 
 @app.route("/")
 def index():
