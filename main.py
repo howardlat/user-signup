@@ -42,6 +42,10 @@ def welcome():
     username = ''
     if not user_error and not password_error and not verify_error and not email_error:
         return render_template('welcome.html',
+        user_error=user_error,
+        password_error=password_error,
+        verify_error=verify_error,
+        email_error=email_error,
         username=username)
          
 @app.route("/")
