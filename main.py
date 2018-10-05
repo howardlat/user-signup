@@ -10,29 +10,28 @@ def validate():
     user_error = ""
     if " " in username or len(username) == 0 or len(username) <3 or len(username) > 20:
         user_error = "That's not a valid username"
-        redirect("/?error=", user_error)
-    
+            
     password = request.form['password']
     password_error = ""
     if " " in password or len(password) == 0 or len(password) <3 or len(password) > 20:
         password_error = "That's not a valid password"
-        redirect("/?error=", password_error)
-        
+                
     verify = request.form['verify']
     verify_error = ""
     if " " in verify or len(verify) == 0 or verify != password: 
         verify_error = "Passwords don't match"
-        redirect("/?error=", verify_error)
-        
+                
     email = request.form['email']
     email_error = ""
     if "@" and " " and "." not in email:
         email_error = "Invalid email address"
-        redirect("/?error=", email_error)
-
+        
     if not user_error and not password_error and not verify_error and not email_error:
         return render_template('welcome.html',
         username=username)
+
+    else:
+        return render_template('welcome.html', username=username)
          
 @app.route("/")
 def index():
