@@ -26,7 +26,10 @@ def validate():
     if "@" and " " and "." not in email:
         email_error = "Invalid email address"
 
-        return render_template('base.html')  
+        return render_template('base.html',
+        user_error=user_error,
+        password_error=password_error,
+        verify_error=verify_error)   
 
     else:
         return render_template('welcome.html',
