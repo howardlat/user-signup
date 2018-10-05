@@ -23,10 +23,10 @@ def validate():
         
     email = request.form['email']
     email_error = ""
-    if @ not in email or and period not in email "":
+    if "@" and " " and "." not in email:
         email_error = "Invalid email address"
 
-    if user_error and password_error and verify_error and email_error:
+    if not user_error and not password_error and not verify_error and not email_error:
         return render_template('welcome.html', username=username)
           
     else:
