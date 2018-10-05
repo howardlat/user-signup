@@ -33,12 +33,17 @@ def validate():
         email_error=email_error,
         username=username)   
 
+@app.route('/welcome', methods=['POST'])
+def welcome():
+    user_error = ''
+    password_error = ''
+    verify_error = ''
+    email_error = ''
+    username = ''
     if not user_error and not password_error and not verify_error and not email_error:
-        return render_template('welcome.html')
-
-    else:
-        return render_template('welcome.html')
-        
+        return render_template('welcome.html',
+        username=username)
+         
 @app.route("/")
 def index():
     encoded_error = request.args.get("error")
