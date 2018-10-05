@@ -31,8 +31,6 @@ def validate():
           
     else:
         return render_template('base.html',
-        username=username,
-        email=email,
         user_error=user_error,
         password_error=password_error,
         verify_error=verify_error,
