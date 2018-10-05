@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Signup</title>
+</head>
+
+<body>
+{% block content %}
+
+<form action='/welcome' method="POST">
+    <h2>Welcome, {{username}}!</h2>
+<ul>
+{% for name in username %}
+    <li>{{ username }}</li>
+{% endfor %}
+</ul>
+
+</form>
+
+{% endblock %}
+</body>
+</html>
