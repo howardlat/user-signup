@@ -6,7 +6,12 @@ app.config['DEBUG'] = True
 
 @app.route('/', methods=['POST'])
 def validate():
-                  
+
+    email = request.form['email']
+    email_error = ""
+    if email is not None and len(email) > 0 and " " and "@" and "." not in email:  
+        email_error = "Invalid email address"
+              
     password = request.form['password']
     password_error = ""
     if " " in password or len(password) == 0 or len(password) <3 or len(password) > 20:
@@ -22,24 +27,17 @@ def validate():
     if " " in username or len(username) == 0 or len(username) <3 or len(username) > 20:
         user_error = "That's not a valid username"
 
-        return render_template('base.html',
-        password_error=password_error,
-        verify_error=verify_error,
-        user_error=user_error)
-
-    email = request.form['email']
-    email_error = ""
-    if email is not None and len(email) > 0 and " " and "@" and "." not in email:  
-        email_error = "Invalid email address"
-
-       
-        return render_template('base.html',
-        email_error=email_error)
-
     if not user_error and not password_error and not verify_error and not email_error:
         return render_template('welcome.html', username=username)
 
-        
+    else:
+        return render_template('base.html',
+        password_error=password_error,
+        verify_error=verify_error,
+        user_error=user_error,
+        email_error=email_error)
+          
+            
 @app.route("/")
 def index():
     encoded_error = request.args.get("error")
