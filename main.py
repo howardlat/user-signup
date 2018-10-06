@@ -6,12 +6,7 @@ app.config['DEBUG'] = True
 
 @app.route('/', methods=['POST'])
 def validate():
-   
-    username = request.form['username']
-    user_error = ""
-    if " " in username or len(username) == 0 or len(username) <3 or len(username) > 20:
-        user_error = "That's not a valid username"
-            
+                  
     password = request.form['password']
     password_error = ""
     if " " in password or len(password) == 0 or len(password) <3 or len(password) > 20:
@@ -22,16 +17,21 @@ def validate():
     if " " in verify or len(verify) == 0 or verify != password: 
         verify_error = "Passwords don't match"
 
+    username = request.form['username']
+    user_error = ""
+    if " " in username or len(username) == 0 or len(username) <3 or len(username) > 20:
+        user_error = "That's not a valid username"
+                             
+        return render_template('base.html',
+        user_error=user_error,
+        password_error=password_error,
+        verify_error=verify_error)
+
     email = request.form['email']
     email_error = ""
     if email is not None and len(email) > 0 and " " and "@" and "." not in email:  
         email_error = "Invalid email address"
-                         
-        return render_template('base.html',
-        user_error=user_error,
-        password_error=password_error,
-        verify_error=verify_error,
-        email_error=email_error)
+        return email_error
 
 
     if not user_error and not password_error and not verify_error and not email_error:
