@@ -8,7 +8,9 @@ app.config['DEBUG'] = True
 def validate():
 
     email = request.form['email']
-    if not email("my.email@gmail.com"):
+    if email is None:
+        pass
+    elif len(email) > 0 and " " and "@" and "." not in email:  
         email_error = "Invalid email address"
             
     username = request.form['username']
