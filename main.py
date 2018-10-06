@@ -24,7 +24,7 @@ def validate():
 
     email = request.form['email']
     email_error = ""
-    if email is not None and " " and "@" and "." not in email:  
+    if email is not None and len(email) > 0 and " " and "@" and "." not in email:  
         email_error = "Invalid email address"
                          
         return render_template('base.html',
