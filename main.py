@@ -8,32 +8,22 @@ app.config['DEBUG'] = True
 def validate():
 
     email = request.form['email']
-    email_error = ""
-    if "@" and " " and "." not in email:
+    if not email("my.email@gmail.com"):
         email_error = "Invalid email address"
-
-        if len(email) < 1:
-            pass
-
+            
     username = request.form['username']
-    user_error = ""
     if " " in username or len(username) == 0 or len(username) <3 or len(username) > 20:
         user_error = "That's not a valid username"
             
-    
-    password = request.form['password']
-    password_error = ""
+        password = request.form['password']
     if " " in password or len(password) == 0 or len(password) <3 or len(password) > 20:
         password_error = "That's not a valid password"
 
-
     verify = request.form['verify']
-    verify_error = ""
     if " " in verify or len(verify) == 0 or verify != password: 
         verify_error = "Passwords don't match"
 
-            
-              
+                     
         return render_template('base.html',
         user_error=user_error,
         password_error=password_error,
