@@ -9,7 +9,7 @@ def validate():
 
     email = request.form['email']
     email_error = ""
-    if "^.+@([?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$" not in email and email != None:
+    if email is not None and "." and "@" not in email:
         email_error = "Invalid email address"
                   
     password = request.form['password']
