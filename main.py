@@ -9,9 +9,8 @@ def validate():
 
     email = request.form['email']
     email_error = ""
-    if email is not None:
-        if "^.+@([?)[a-zA-Z0-9-.]+." not in email:
-            email_error = "Invalid email address"
+    if email.isalnum and "^.+@([?)[a-zA-Z0-9-.]+." not in email:
+        email_error = "Invalid email address"
                   
     password = request.form['password']
     password_error = ""
