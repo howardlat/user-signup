@@ -9,7 +9,7 @@ def validate():
 
     email = request.form['email']
     email_error = ""
-    if email is not None and "." and "@" not in email:
+    if "@" or "." not in email or len(email) > 0:
         email_error = "Invalid email address"
                   
     password = request.form['password']
